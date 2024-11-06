@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Priva Treuhand GmbH - Ihre kompetente Partnerin für Treuhanddienstleistungen in Reinach AG. Buchhaltung, Personaladministration und Steuerberatung.">
+    <title>Priva Treuhand GmbH</title>
+    <link rel="favicon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary-blue: #29A7E1;
+            --primary-brown: #9B8975;
+            --light-gray: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--white) 0%, #f8f9fa 100%);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            max-height: 60px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.5rem 2rem;
+        }
+
+        .header.scrolled .logo {
+            max-height: 45px;
+        }
+
+        .title-container {
+            text-align: left;
+        }
+
+        .company-title {
+            font-size: 1.8rem;
+            margin: 0;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .company-subtitle {
+            font-size: 1rem;
+            color: var(--primary-brown);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(41, 167, 225, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-brown);
+            transition: width 0.3s ease;
+        }
+
+        .section:hover h2::after {
+            width: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        li:before {
+            content: "→";
+            color: var(--primary-brown);
+            position: absolute;
+            left: -1rem;
+            transition: transform 0.2s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a8ac0 100%);
+            color: var(--white);
+            padding: 3rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 3rem;
+        }
+
+        .contact h2 {
+            color: var(--white);
+        }
+
+        .contact h2::after {
+            background-color: var(--white);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .logo-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .title-container {
+                text-align: center;
+            }
+
+            .logo {
+                max-height: 45px;
+            }
+
+            .company-title {
+                font-size: 1.5rem;
+            }
+
+            .company-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Priva Treuhand GmbH Logo" class="logo" loading="lazy">
+            <div class="title-container">
+                <h1 class="company-title">Priva Treuhand GmbH</h1>
+                <div class="company-subtitle">Ihre kompetente Partnerin für Treuhanddienstleistungen</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section" role="region" aria-label="Über uns">
+            <h2>Über uns</h2>
+            <p>Die Priva Treuhand GmbH, mit Sitz in Reinach AG, wurde 2021 gegründet und ist Ihre kompetente Partnerin für sämtliche Treuhanddienstleistungen. Wir bieten professionelle Unterstützung in den Bereichen Buchhaltung, Personaladministration und Steuerberatung.</p>
+        </section>
+
+        <nav role="navigation">
+            <section class="section">
+                <h2>Personaladministration</h2>
+                <ul>
+                    <li>Lohnbuchhaltung (inkl. Deklarationen und Abrechnungen)</li>
+                    <li>Ausstellen von Lohnausweisen</li>
+                    <li>Schnittstelle zu AHV, Unfallversicherung, Krankentaggeld, Pensionskasse, Behörden</li>
+                    <li>Personaladministrationen inkl. Sozialversicherungen</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Buchhaltung / Abschlüsse</h2>
+                <ul>
+                    <li>Erstellen von Jahresabschlüssen, Zwischenbilanzen und Geschäftsberichten</li>
+                    <li>Einrichten und Führen von Kundenbuchhaltungen</li>
+                    <li>Erstellen von Mehrwertsteuer-Abrechnungen und Mehrwertsteuer-Beratung</li>
+                    <li>Übernahme der Rechnungswesen-Prozesse</li>
+                    <li>Finanzbuchhaltung</li>
+                    <li>MWSt-Deklaration</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Steuerberatung</h2>
+                <ul>
+                    <li>Optimierung von Steuern und Sozialabgaben</li>
+                    <li>Erstellen von verschiedenen Steuererklärungen</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>Ihre Vorteile</h2>
+                <ul>
+                    <li>Individuelle Unterstützung</li>
+                    <li>Persönliche Ansprechperson</li>
+                    <li>Kompakte Beratung</li>
+                    <li>Umfassendes Dienstleistungspaket</li>
+                    <li>Langjährige Erfahrung</li>
+                    <li>Kundenspezifische Umsetzung</li>
+                </ul>
+            </section>
+        </nav>
+    </main>
+
+    <footer class="contact" role="contentinfo">
+        <h2>Kontakt</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>Adresse</h3>
+                <p>Priva Treuhand GmbH</p>
+                <p>Hauptstrasse 64</p>
+                <p>5734 Reinach AG</p>
+                <p>Schweiz</p>
+            </div>
+            <div class="contact-item">
+                <h3>Kontaktdaten</h3>
+                <p>Tel: +41 76 400 46 06</p>
+                <p>E-Mail: liria.jasari@priva-treuhand.ch</p>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.669391543595!2d8.050903776891492!3d47.390844971669396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47903bf9dd512c61%3A0x9e53d76bbe8b5e11!2sHauptstrasse%2064%2C%205734%20Reinach%20AG!5e0!3m2!1sde!2sch!4v1699287431695!5m2!1sde!2sch"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Standort von Priva Treuhand GmbH">
+            </iframe>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
