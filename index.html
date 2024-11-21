@@ -30,7 +30,7 @@
         .header {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             padding: 1rem 2rem;
             background: linear-gradient(135deg, var(--white) 0%, #f8f9fa 100%);
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
@@ -50,44 +50,44 @@
         }
 
         .logo {
-    max-height: 150px;  /* Erhöhe diesen Wert für ein größeres Logo */
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-.header.scrolled .logo {
-    max-height: 60px;  /* Größe des Logos wenn gescrollt wird */
-}
-
-@media (max-width: 768px) {
-    .logo {
-        max-height: 60px;  /* Größe auf mobilen Geräten */
-    }
-}
-
-        .title-container {
-            text-align: left;
+            max-height: 150px;  /* Erhöhe diesen Wert für ein größeres Logo */
+            width: auto;
+            transition: all 0.3s ease;
         }
 
-        .company-title {
-            font-size: 1.8rem;
-            margin: 0;
-            color: var(--primary-blue);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
+        .header.scrolled .logo {
+            max-height: 60px;  /* Größe des Logos wenn gescrollt wird */
         }
 
-        .company-subtitle {
-            font-size: 1rem;
-            color: var(--primary-brown);
-            margin: 0;
+        @media (max-width: 768px) {
+            .logo {
+                max-height: 60px;  /* Größe auf mobilen Geräten */
+            }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a8ac0 100%);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
         }
 
         .section {
@@ -118,7 +118,14 @@
             pointer-events: none;
         }
 
-        h2 {
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .section-header h2 {
             color: var(--primary-blue);
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
@@ -126,7 +133,7 @@
             padding-bottom: 0.5rem;
         }
 
-        h2::after {
+        .section-header h2::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -137,23 +144,37 @@
             transition: width 0.3s ease;
         }
 
-        .section:hover h2::after {
+        .section:hover .section-header h2::after {
             width: 100px;
         }
 
-        ul {
+        .section-header .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            display: none;
+            padding-top: 1rem;
+        }
+
+        .section-content ul {
             list-style-type: none;
             padding-left: 1.5rem;
         }
 
-        li {
+        .section-content li {
             margin-bottom: 0.8rem;
             position: relative;
             padding-left: 1.5rem;
             transition: transform 0.2s ease;
         }
 
-        li:before {
+        .section-content li:before {
             content: "→";
             color: var(--primary-brown);
             position: absolute;
@@ -161,7 +182,7 @@
             transition: transform 0.2s ease;
         }
 
-        li:hover {
+        .section-content li:hover {
             transform: translateX(5px);
         }
 
@@ -230,22 +251,6 @@
                 gap: 1rem;
             }
 
-            .title-container {
-                text-align: center;
-            }
-
-            .logo {
-                max-height: 45px;
-            }
-
-            .company-title {
-                font-size: 1.5rem;
-            }
-
-            .company-subtitle {
-                font-size: 0.9rem;
-            }
-
             .container {
                 padding: 1rem;
             }
@@ -257,6 +262,18 @@
             .contact-info {
                 grid-template-columns: 1fr;
             }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -264,32 +281,36 @@
     <header class="header" role="banner">
         <div class="logo-container">
             <img src="logo.png" alt="Priva Treuhand GmbH Logo" class="logo" loading="lazy">
-            <div class="title-container">
-                <h1 class="company-title">Priva Treuhand GmbH</h1>
-                <div class="company-subtitle">Ihre kompetente Partnerin für Treuhanddienstleistungen</div>
-            </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="section" role="region" aria-label="Über uns">
-            <h2>Über uns</h2>
-            <p>Die Priva Treuhand GmbH, mit Sitz in Reinach AG, wurde 2021 gegründet und ist Ihre kompetente Partnerin für sämtliche Treuhanddienstleistungen. Wir bieten professionelle Unterstützung in den Bereichen Buchhaltung, Personaladministration und Steuerberatung.</p>
+        <section class="hero">
+            <h1>Willkommen bei Priva Treuhand GmbH</h1>
+            <p>Wir sind Ihre kompetente Partnerin für Treuhanddienstleistungen in Reinach AG. Mit langjähriger Erfahrung bieten wir Ihnen professionelle Unterstützung in den Bereichen Buchhaltung, Personaladministration und Steuerberatung. Unsere individuelle Beratung und umfassende Dienstleistungen sorgen für Ihren Erfolg. Klicken Sie auf die Überschriften, um mehr über unsere Dienstleistungen zu erfahren.</p>
         </section>
 
-        <nav role="navigation">
-            <section class="section">
+        <section class="section">
+            <div class="section-header">
                 <h2>Personaladministration</h2>
+                <span class="arrow">↓</span>
+            </div>
+            <div class="section-content">
                 <ul>
                     <li>Lohnbuchhaltung (inkl. Deklarationen und Abrechnungen)</li>
                     <li>Ausstellen von Lohnausweisen</li>
                     <li>Schnittstelle zu AHV, Unfallversicherung, Krankentaggeld, Pensionskasse, Behörden</li>
                     <li>Personaladministrationen inkl. Sozialversicherungen</li>
                 </ul>
-            </section>
+            </div>
+        </section>
 
-            <section class="section">
+        <section class="section">
+            <div class="section-header">
                 <h2>Buchhaltung / Abschlüsse</h2>
+                <span class="arrow">↓</span>
+            </div>
+            <div class="section-content">
                 <ul>
                     <li>Erstellen von Jahresabschlüssen, Zwischenbilanzen und Geschäftsberichten</li>
                     <li>Einrichten und Führen von Kundenbuchhaltungen</li>
@@ -298,18 +319,28 @@
                     <li>Finanzbuchhaltung</li>
                     <li>MWSt-Deklaration</li>
                 </ul>
-            </section>
+            </div>
+        </section>
 
-            <section class="section">
+        <section class="section">
+            <div class="section-header">
                 <h2>Steuerberatung</h2>
+                <span class="arrow">↓</span>
+            </div>
+            <div class="section-content">
                 <ul>
                     <li>Optimierung von Steuern und Sozialabgaben</li>
                     <li>Erstellen von verschiedenen Steuererklärungen</li>
                 </ul>
-            </section>
+            </div>
+        </section>
 
-            <section class="section">
+        <section class="section">
+            <div class="section-header">
                 <h2>Ihre Vorteile</h2>
+                <span class="arrow">↓</span>
+            </div>
+            <div class="section-content">
                 <ul>
                     <li>Individuelle Unterstützung</li>
                     <li>Persönliche Ansprechperson</li>
@@ -318,8 +349,8 @@
                     <li>Langjährige Erfahrung</li>
                     <li>Kundenspezifische Umsetzung</li>
                 </ul>
-            </section>
-        </nav>
+            </div>
+        </section>
     </main>
 
     <footer class="contact" role="contentinfo">
@@ -340,14 +371,13 @@
         </div>
         
         <div class="map-container">
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.883440709345!2d8.167586776891376!3d47.39328747166912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47903c0104d5b07d%3A0xbcc3f6b2e77f19b7!2sF%C3%A4rberstrasse%2012A%2C%205734%20Reinach%20AG%2C%20Schweiz!5e0!3m2!1sde!2sch!4v1699287431695!5m2!1sde!2sch"
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Standort von Priva Treuhand GmbH">
-    </iframe>
-
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2711.883440709345!2d8.167586776891376!3d47.39328747166912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47903c0104d5b07d%3A0xbcc3f6b2e77f19b7!2sF%C3%A4rberstrasse%2012A%2C%205734%20Reinach%20AG%2C%20Schweiz!5e0!3m2!1sde!2sch!4v1699287431695!5m2!1sde!2sch"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Standort von Priva Treuhand GmbH">
+            </iframe>
         </div>
     </footer>
 
@@ -360,6 +390,16 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        // Toggle section content
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                const arrow = this.querySelector('.arrow');
+                arrow.textContent = content.style.display === 'block' ? '↑' : '↓';
+            });
         });
     </script>
 </body>
